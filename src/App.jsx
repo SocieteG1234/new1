@@ -25,7 +25,7 @@ const ROUTE = [
   [12.8, 45.0], [27.0, 34.0], [30.5, 32.3], [36.0, 14.0], [44.4, 8.9],
 ];
 
-const ABIDJAN_COLOR = "#1e90ff";
+const ABIDJAN_COLOR = "#ff0000";
 const ABIDJAN_SIZE = 18;
 
 const TYPES = {
@@ -179,12 +179,12 @@ function VesselItem({ vessel, selected, onClick }) {
   return (
     <div onClick={onClick}
       className={`flex items-center gap-3 px-4 py-2.5 cursor-pointer border-b border-white/5 transition-all
-        ${selected ? (isAbidjan ? "bg-blue-500/10" : "bg-cyan-400/10") : "hover:bg-white/5"}
+        ${selected ? (isAbidjan ? "bg-red-500/10" : "bg-cyan-400/10") : "hover:bg-white/5"}
         ${isAbidjan ? "border-l-2" : ""}`}
       style={isAbidjan ? { borderLeftColor: ABIDJAN_COLOR } : {}}>
       <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: dotColor }}/>
       <div className="flex-1 min-w-0">
-        <div className={`text-sm font-semibold truncate ${isAbidjan ? "text-blue-400" : ""}`}>{vessel.name}</div>
+        <div className={`text-sm font-semibold truncate ${isAbidjan ? "text-red-400" : ""}`}>{vessel.name}</div>
         <div className="text-[11px] text-slate-400 mt-0.5 truncate">{cfg.label} {vessel.flag} {vessel.to}</div>
       </div>
       <div className="text-[12px] text-slate-400 flex-shrink-0">{vessel.speed} kn</div>
@@ -276,7 +276,7 @@ function ExplorerPage({ vessels, onSelectVessel, setActiveTab }) {
                       style={isAbidjan ? { borderLeft:`2px solid ${ABIDJAN_COLOR}` } : {}}>
                       <div className="flex items-center gap-2 mb-1">
                         <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dotColor }}/>
-                        <span className={`font-semibold text-sm flex-1 truncate ${isAbidjan ? "text-blue-400" : "text-slate-100"}`}>{v.name}</span>
+                        <span className={`font-semibold text-sm flex-1 truncate ${isAbidjan ? "text-red-400" : "text-slate-100"}`}>{v.name}</span>
                         <span className="text-cyan-400 text-xs font-mono">{v.speed} kn</span>
                       </div>
                       <div className="flex items-center gap-2 pl-4 flex-wrap">
@@ -306,7 +306,7 @@ function ExplorerPage({ vessels, onSelectVessel, setActiveTab }) {
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dotColor }}/>
-                            <span className={`font-semibold ${isAbidjan ? "text-blue-400" : "text-slate-100"}`}>{v.name}</span>
+                            <span className={`font-semibold ${isAbidjan ? "text-red-400" : "text-slate-100"}`}>{v.name}</span>
                           </div>
                           <div className="text-[11px] text-slate-500 pl-4">{v.mmsi}</div>
                         </td>
@@ -337,7 +337,7 @@ function ExplorerPage({ vessels, onSelectVessel, setActiveTab }) {
             style={{ scrollbarWidth:"thin" }}>
             <div className="sticky top-0 bg-slate-900/98 px-4 py-3 border-b border-cyan-400/15 flex items-center gap-2">
               <button onClick={()=>{setSelected(null);setShowDetail(false);}} className="md:hidden text-slate-400 text-sm">← Retour</button>
-              <h3 className={`font-bold flex-1 truncate text-sm ${selected.id==="route-001" ? "text-blue-400" : "text-slate-100"}`}>{selected.name}</h3>
+              <h3 className={`font-bold flex-1 truncate text-sm ${selected.id==="route-001" ? "text-red-400" : "text-slate-100"}`}>{selected.name}</h3>
               <button onClick={()=>{setSelected(null);setShowDetail(false);}} className="hidden md:block text-slate-500 hover:text-slate-300 text-sm">✕</button>
             </div>
             <div className="p-4 grid gap-4">
@@ -357,12 +357,12 @@ function ExplorerPage({ vessels, onSelectVessel, setActiveTab }) {
                 <div>
                   <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1.5">Progression</div>
                   <div className="h-1.5 rounded-full bg-white/10 overflow-hidden mb-1">
-                    <div className="h-full rounded-full bg-gradient-to-r from-blue-600 to-blue-400" style={{ width:`${Math.round(selected.progress*100)}%` }}/>
+                    <div className="h-full rounded-full bg-gradient-to-r from-red-600 to-red-400" style={{ width:`${Math.round(selected.progress*100)}%` }}/>
                   </div>
                   <div className="text-[11px] text-slate-400 mt-1">
-                    <span className="text-blue-400 font-bold">{Math.round(selected.progress*100)}%</span>
+                    <span className="text-red-400 font-bold">{Math.round(selected.progress*100)}%</span>
                     {" · "}Départ: <span className="text-slate-300">4 fév. 2026</span>
-                    {" · "}ETA: <span className="text-blue-400">12 mars 2026</span>
+                    {" · "}ETA: <span className="text-red-400">12 mars 2026</span>
                     {" · "}<span className="text-slate-400">J-{getDaysLeft(selected.progress)} restants</span>
                   </div>
                 </div>
@@ -439,7 +439,7 @@ function FlottePage({ vessels }) {
                   style={{ borderColor: isAbidjan ? `${ABIDJAN_COLOR}55` : "rgba(255,255,255,0.08)" }}>
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0 mr-2">
-                      <h3 className={`font-bold text-sm truncate mb-1 ${isAbidjan ? "text-blue-400" : "text-slate-100"}`}>{v.name}</h3>
+                      <h3 className={`font-bold text-sm truncate mb-1 ${isAbidjan ? "text-red-400" : "text-slate-100"}`}>{v.name}</h3>
                       <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${cfg.tailwind}`}>{cfg.label}</span>
                     </div>
                     <div className="text-right flex-shrink-0">
@@ -485,7 +485,7 @@ function FlottePage({ vessels }) {
                       <td className="px-3 py-3">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dotColor }}/>
-                          <span className={`font-semibold text-xs truncate max-w-28 ${isAbidjan ? "text-blue-400" : "text-slate-100"}`}>{v.name}</span>
+                          <span className={`font-semibold text-xs truncate max-w-28 ${isAbidjan ? "text-red-400" : "text-slate-100"}`}>{v.name}</span>
                         </div>
                       </td>
                       <td className="px-3 py-3"><span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${cfg.tailwind}`}>{cfg.label}</span></td>
@@ -614,6 +614,7 @@ export default function MarineTracker() {
     const isAbidjan = v.id === "route-001";
     const color = isAbidjan ? ABIDJAN_COLOR : TYPES[v.type].color;
     const size = isAbidjan ? ABIDJAN_SIZE : 13;
+            const iconH = isAbidjan ? size*3.2*2 : size*2;
     const icon = L.divIcon({
       html: shipSVG(v.heading, color, size, isAbidjan),
       className: "cursor-pointer",
@@ -647,6 +648,7 @@ export default function MarineTracker() {
             const isAbidjan = v.id === "route-001";
             const color = isAbidjan ? ABIDJAN_COLOR : TYPES[u.type].color;
             const size = isAbidjan ? ABIDJAN_SIZE : 13;
+            const iconH = isAbidjan ? size*3.2*2 : size*2;
             markersRef.current[v.id].setIcon(L.divIcon({
               html: shipSVG(u.heading, color, size, isAbidjan),
               className: "cursor-pointer",
@@ -740,7 +742,7 @@ export default function MarineTracker() {
                   <div key={v.id} onMouseDown={()=>selectFromSearch(v)}
                     className="flex items-center gap-2 px-3 py-2 hover:bg-cyan-400/10 cursor-pointer border-b border-white/5 last:border-0">
                     <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dotColor }}/>
-                    <span className={`flex-1 truncate text-xs ${isAbidjan ? "text-blue-400" : ""}`}>{v.name}</span>
+                    <span className={`flex-1 truncate text-xs ${isAbidjan ? "text-red-400" : ""}`}>{v.name}</span>
                     <span className="text-slate-500 text-[10px]">{TYPES[v.type].label}</span>
                   </div>
                 );
@@ -759,7 +761,7 @@ export default function MarineTracker() {
             <div className="absolute bottom-8 left-2 z-40 bg-slate-950/90 border border-cyan-400/20 rounded-lg p-2">
               <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-white/10">
                 <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: ABIDJAN_COLOR }}/>
-                <span className="text-[10px] text-blue-400 font-bold hidden sm:inline">MV Annemasse Star</span>
+                <span className="text-[10px] text-red-400 font-bold hidden sm:inline">MV Annemasse Star</span>
               </div>
               {Object.entries(TYPES).map(([,cfg])=>(
                 <div key={cfg.label} className="flex items-center gap-1.5 mb-1 last:mb-0">
@@ -818,8 +820,8 @@ export default function MarineTracker() {
 
             {selected && (
               <div className="border-b border-cyan-400/15">
-                <div className={`px-4 pt-3 pb-2 ${selected.id==="route-001" ? "bg-gradient-to-br from-blue-600/10 to-transparent" : "bg-gradient-to-br from-cyan-400/5 to-transparent"}`}>
-                  <h2 className={`font-bold text-sm truncate mb-1 ${selected.id==="route-001" ? "text-blue-400" : ""}`} style={{ fontFamily:"'Rajdhani'" }}>{selected.name}</h2>
+                <div className={`px-4 pt-3 pb-2 ${selected.id==="route-001" ? "bg-gradient-to-br from-red-600/10 to-transparent" : "bg-gradient-to-br from-cyan-400/5 to-transparent"}`}>
+                  <h2 className={`font-bold text-sm truncate mb-1 ${selected.id==="route-001" ? "text-red-400" : ""}`} style={{ fontFamily:"'Rajdhani'" }}>{selected.name}</h2>
                   <span className={`text-[11px] px-2 py-0.5 rounded-full border ${TYPES[selected.type].tailwind}`}>{TYPES[selected.type].label}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3 px-4 py-3">
@@ -836,19 +838,19 @@ export default function MarineTracker() {
                   <div className="px-4 pb-3">
                     <div className="flex justify-between text-[11px] text-slate-400 mb-1.5">
                       <span>Progression</span>
-                      <span className="text-blue-400 font-bold">{Math.round(selected.progress*100)}%</span>
+                      <span className="text-red-400 font-bold">{Math.round(selected.progress*100)}%</span>
                     </div>
                     <div className="h-1.5 rounded-full bg-white/10 overflow-hidden mb-2">
-                      <div className="h-full rounded-full bg-gradient-to-r from-blue-700 to-blue-400 transition-all duration-1000" style={{ width:`${Math.round(selected.progress*100)}%` }}/>
+                      <div className="h-full rounded-full bg-gradient-to-r from-red-700 to-red-400 transition-all duration-1000" style={{ width:`${Math.round(selected.progress*100)}%` }}/>
                     </div>
                     <div className="flex justify-between text-[11px] text-slate-400">
                       <span>Pékin · 4 fév.</span><span>12 mars · Annemasse</span>
                     </div>
-                    <div className="text-[11px] text-slate-400 mt-1">ETA: <span className="text-blue-400">12 mars 2026</span> · <span className="text-slate-300">J-{getDaysLeft(selected.progress)} restants</span></div>
+                    <div className="text-[11px] text-slate-400 mt-1">ETA: <span className="text-red-400">12 mars 2026</span> · <span className="text-slate-300">J-{getDaysLeft(selected.progress)} restants</span></div>
                   </div>
                 )}
                 <div className="flex gap-2 px-4 pb-3">
-                  <button onClick={()=>setSelectedId(null)} className="text-xs text-slate-400 hover:text-blue-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded">✕</button>
+                  <button onClick={()=>setSelectedId(null)} className="text-xs text-slate-400 hover:text-red-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded">✕</button>
                   <button onClick={centerOnSelected} className="text-xs text-cyan-400 bg-cyan-400/8 hover:bg-cyan-400/15 border border-cyan-400/25 px-3 py-1.5 rounded">Centrer</button>
                 </div>
               </div>
